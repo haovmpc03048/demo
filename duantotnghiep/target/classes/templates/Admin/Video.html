@@ -1,0 +1,786 @@
+<!doctype html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Edit Professor | Kiaalap - Kiaalap Admin Template</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- favicon
+		============================================ -->
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <!-- Google Fonts
+		============================================ -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
+    <!-- Bootstrap CSS
+		============================================ -->
+    <link rel="stylesheet" th:href="@{/Admin/css/bootstrap.min.css}">
+    <!-- Bootstrap CSS
+		============================================ -->
+    <link rel="stylesheet" th:href="@{/Admin/css/font-awesome.min.css}">
+    <!-- owl.carousel CSS
+		============================================ -->
+    <link rel="stylesheet" th:href="@{/Admin/css/owl.carousel.css}">
+    <link rel="stylesheet" th:href="@{/Admin/css/owl.theme.css}">
+    <link rel="stylesheet" th:href="@{/Admin/css/owl.transitions.css}">
+    <!-- animate CSS
+		============================================ -->
+    <link rel="stylesheet" th:href="@{/Admin/css/animate.css}">
+    <!-- normalize CSS
+		============================================ -->
+    <link rel="stylesheet" th:href="@{/Admin/css/normalize.css}">
+    <!-- main CSS
+		============================================ -->
+    <link rel="stylesheet" th:href="@{/Admin/css/main.css}">
+    <!-- educate icon CSS
+		============================================ -->
+    <link rel="stylesheet" th:href="@{/Admin/css/educate-custon-icon.css}">
+    <!-- meanmenu icon CSS ============================================ -->
+    <link th:href="@{/Admin/css/meanmenu.min.css}" rel="stylesheet">
+
+    <!-- morrisjs CSS
+		============================================ -->
+    <link rel="stylesheet" th:href="@{/Admin/css/morrisjs/morris.css}">
+    <!-- mCustomScrollbar CSS
+		============================================ -->
+    <link rel="stylesheet" th:href="@{/Admin/css/scrollbar/jquery.mCustomScrollbar.min.css}">
+    <!-- metisMenu CSS
+		============================================ -->
+    <link rel="stylesheet" th:href="@{/Admin/css/metisMenu/metisMenu.min.css}">
+    <link rel="stylesheet" th:href="@{/Admin/css/metisMenu/metisMenu-vertical.css}">
+    <!-- calendar CSS
+		============================================ -->
+    <link rel="stylesheet" th:href="@{/Admin/css/calendar/fullcalendar.min.css}">
+    <link rel="stylesheet" th:href="@{/Admin/css/calendar/fullcalendar.print.min.css}">
+    <!-- forms CSS
+		============================================ -->
+    <link rel="stylesheet" th:href="@{/Admin/css/form/all-type-forms.css}">
+    <!-- dropzone CSS
+		============================================ -->
+    <link rel="stylesheet" th:href="@{/Admin/css/dropzone/dropzone.css}">
+    <!-- style CSS
+		============================================ -->
+    <link rel="stylesheet" th:href="@{/Admin/css/style.css}">
+    <!-- responsive CSS
+		============================================ -->
+    <link rel="stylesheet" th:href="@{/Admin/css/responsive.css}">
+    <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css}">
+    <script th:src="@{https://cdn.jsdelivr.net/npm/toastify-js}"></script>
+    <!-- modernizr JS
+		============================================ -->
+    <script th:src="@{/Admin/js/vendor/modernizr-2.8.3.min.js}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+    <!-- Include Angular UI Bootstrap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.6/ui-bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.6/ui-bootstrap-tpls.min.js"></script>
+    <style>
+        .product-status-wrap {
+            overflow-x: auto;
+            /* Cho phép cuộn ngang khi bảng quá dài */
+        }
+
+        .form-container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            padding-top: 20px;
+            padding-bottom: 80px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            background-color: #fff;
+            /* Điều chỉnh kích thước tối đa của khung bao */
+            margin: 0 auto;
+            /* Để căn giữa khung bao trên trang */
+        }
+
+        /* Thêm CSS để bo tròn góc của thanh thông báo */
+        .toastify {
+            border-radius: 10px;
+        }
+
+        .error {
+            background: linear-gradient(to right, #e12e1d, #f07c74);
+            /* Gradient màu đỏ cho lỗi */
+        }
+
+        .success {
+            background: linear-gradient(to right, #00b09b, #96c93d);
+            /* Gradient màu xanh cho thành công */
+        }
+
+        .warning {
+            background: linear-gradient(to right, #f5a623, #f8e71c);
+            /* Gradient màu vàng cho cảnh báo */
+        }
+    </style>
+
+    <style>
+        * {
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Roboto", sans-serif;
+            background: #f7f6ff;
+        }
+
+        h2 {
+            margin: 16px;
+        }
+
+        .container {
+            width: 100%;
+        }
+
+        .select-box {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .select-box .options-container {
+            background: #2f3640;
+            color: #f5f6fa;
+            max-height: 0;
+            width: 100%;
+            opacity: 0;
+            transition: all 0.4s;
+            border-radius: 8px;
+            overflow: hidden;
+
+            order: 1;
+        }
+
+        .selected {
+            border-radius: 8px;
+            margin-bottom: 8px;
+            color: #0d141f;
+            position: relative;
+            order: 0;
+            border: #0d141f 2px solid;
+        }
+
+        .selected::after {
+            content: "";
+            background-size: contain;
+            background-repeat: no-repeat;
+
+            position: absolute;
+            height: 100%;
+            width: 32px;
+            right: 10px;
+            top: 5px;
+
+            transition: all 0.4s;
+        }
+
+        .select-box .options-container.active {
+            max-height: 240px;
+            opacity: 1;
+            overflow-y: scroll;
+            margin-top: 54px;
+        }
+
+        .select-box .options-container.active+.selected::after {
+            transform: rotateX(180deg);
+            top: -6px;
+        }
+
+        .select-box .options-container::-webkit-scrollbar {
+            width: 8px;
+            background: #0d141f;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .select-box .options-container::-webkit-scrollbar-thumb {
+            background: #525861;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .select-box .option,
+        .selected {
+            padding: 12px 24px;
+            cursor: pointer;
+        }
+
+        .select-box .option:hover {
+            background: #414b57;
+        }
+
+        .select-box label {
+            cursor: pointer;
+        }
+
+        .select-box .option .radio {
+            display: none;
+        }
+
+        /* Searchbox */
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 16px;
+            font-family: "Roboto", sans-serif;
+            font-size: 16px;
+            position: absolute;
+            border-radius: 8px 8px 0 0;
+            z-index: 100;
+            border: 8px solid #2f3640;
+
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+        }
+
+        .select-box .options-container.active~.search-box input {
+            opacity: 1;
+            pointer-events: auto;
+        }
+    </style>
+
+</head>
+
+<body ng-app="myApp" ng-controller="Video-ctrl">
+    <!--[if lt IE 8]>
+		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
+    <!-- Start Left menu area -->
+    <!-- Start Header menu area -->
+    <div class="left-sidebar-pro">
+        <nav id="sidebar" class="">
+            <div class="sidebar-header">
+                <a th:href="@{/index}"><img class="main-logo" th:src="@{/img/LogoPLA.png}" style="width: 150px;"
+                        alt="" /></a>
+            </div>
+            <div class="left-custom-menu-adp-wrap comment-scrollbar">
+                <nav class="sidebar-nav left-sidebar-menu-pro">
+                    <ul class="metismenu" id="menu1">
+                        <li><a class="has-arrow" th:href="@{/Admin/index1}"> <span
+                                    class="educate-icon educate-home icon-wrap"></span> <span
+                                    class="mini-click-non">Thống kê</span>
+                            </a>
+                            <ul class="submenu-angle" aria-expanded="true">
+                                <li><a title="Dashboard v.1" th:href="@{/Admin/ThongKe}"><span
+                                            class="mini-sub-pro">Thống Kê</span></a></li>
+                            </ul>
+                        </li>
+
+                        <li><a class="has-arrow" th:href="@{/Admin/all-professors}" aria-expanded="false"><span
+                                    class="educate-icon educate-professor icon-wrap"></span>
+                                <span class="mini-click-non">Người dùng</span></a>
+                            <ul class="submenu-angle" aria-expanded="false">
+                                <li><a title="Edit Professor" th:href="@{/Admin/User}"><span class="mini-sub-pro">Quản
+                                            lý người dùng</span></a></li>
+                                <li><a title="All Students" th:href="@{/Admin/HocVien}"><span class="mini-sub-pro"> Quản
+                                            Lí
+                                            Học Viên</span></a></li>
+                            </ul>
+                        </li>
+                        <li><a class="has-arrow" th:href="@{/Admin/KhoaHoc}" aria-expanded="false"><span
+                                    class="educate-icon educate-course icon-wrap"></span> <span
+                                    class="mini-click-non">Khóa Học</span></a>
+                            <ul class="submenu-angle" aria-expanded="false">
+                                <li><a title="Add Courses" th:href="@{/Admin/EditKhoaHoc}"><span
+                                            class="mini-sub-pro">Thêm Khóa Học</span></a></li>
+                                <li><a title="Add Courses" th:href="@{/Admin/KenhKhoaHoc}"><span
+                                            class="mini-sub-pro">Kênh Khóa Học</span></a></li>
+
+                            </ul>
+                        </li>
+                        <li><a class="has-arrow" th:href="@{/Admin/TaiLieu}" aria-expanded="false"><span
+                                    class="educate-icon educate-library icon-wrap"></span> <span
+                                    class="mini-click-non">Tài Liệu</span></a>
+                            <ul class="submenu-angle" aria-expanded="false">
+                                <li><a title="All Library" th:href="@{/Admin/TaiLieu}"><span class="mini-sub-pro">Quản
+                                            Lí Tài Liệu</span></a></li>
+                                <li><a title="All Library" th:href="@{/Admin/CauHoi}"><span class="mini-sub-pro">Câu
+                                            Hỏi</span></a></li>
+                            </ul>
+                        </li>
+                        <li><a class="has-arrow" th:href="@{/Admin/ChungChi}" aria-expanded="false"><span
+                                    class="educate-icon educate-department icon-wrap"></span> <span
+                                    class="mini-click-non">Chúng nhận</span></a>
+                            <ul class="submenu-angle" aria-expanded="false">
+                                <li><a title="ChungChi List" th:href="@{/Admin/ChungChi}"><span
+                                            class="mini-sub-pro">Chúng nhận</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="active"><a class="has-arrow" th:href="@{/Admin/Video}" aria-expanded="false"><span
+                                    class="educate-icon educate-message icon-wrap"></span> <span
+                                    class="mini-click-non">Video</span></a>
+                            <ul class="submenu-angle" aria-expanded="false">
+                                <li><a title="Inbox" th:href="@{/Admin/Video}"><span
+                                            class="mini-sub-pro">Video</span></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </nav>
+    </div>
+
+    <script>
+        // Lấy danh sách tất cả các mục menu có lớp "has-arrow"
+        var menuItems = document.querySelectorAll('.has-arrow');
+
+        // Lặp qua từng mục menu
+        menuItems.forEach(function (item) {
+            // Thêm sự kiện click cho mỗi mục menu
+            item.addEventListener('click', function (event) {
+                // Ngăn chặn hành động mặc định của liên kết
+                event.preventDefault();
+
+                // Tìm thẻ cha li của mục menu
+                var parentLi = item.closest('li');
+
+                // Lặp qua tất cả các mục menu và đóng chúng
+                menuItems.forEach(function (menuItem) {
+                    if (menuItem !== item) {
+                        var parentLiToClose = menuItem.closest('li');
+                        var submenu = parentLiToClose.querySelector('.submenu-angle');
+                        // Đóng mục menu bằng cách ẩn submenu
+                        submenu.style.display = 'none';
+
+                        // Thay đổi biểu tượng thành mũi tên ngang (mở)
+                        var icon = parentLiToClose.querySelector('.icon-wrap');
+                        icon.classList.remove('educate-chevron-down');
+                        icon.classList.add('educate-chevron-right');
+                    }
+                });
+
+                // Mở hoặc đóng mục menu bằng cách hiển thị hoặc ẩn submenu
+                var submenuToToggle = parentLi.querySelector('.submenu-angle');
+                if (submenuToToggle.style.display === 'none' || submenuToToggle.style.display === '') {
+                    submenuToToggle.style.display = 'block';
+
+                    // Thay đổi biểu tượng thành mũi tên xuống (đóng)
+                    var icon = parentLi.querySelector('.icon-wrap');
+                    icon.classList.remove('educate-chevron-right');
+                    icon.classList.add('educate-chevron-down');
+                } else {
+                    submenuToToggle.style.display = 'none';
+
+                    // Thay đổi biểu tượng thành mũi tên ngang (mở)
+                    var icon = parentLi.querySelector('.icon-wrap');
+                    icon.classList.remove('educate-chevron-down');
+                    icon.classList.add('educate-chevron-right');
+                }
+            });
+
+            // Đảm bảo rằng mục "Video" được mở mặc định và có biểu tượng chevron xuống
+            var parentLi = item.closest('li');
+            if (parentLi.querySelector('a').getAttribute('href') === 'Video') {
+                var submenu = parentLi.querySelector('.submenu-angle');
+                submenu.style.display = 'block';
+
+                var icon = parentLi.querySelector('.icon-wrap');
+                icon.classList.remove('educate-chevron-right');
+                icon.classList.add('educate-chevron-down');
+            } else {
+                var submenu = parentLi.querySelector('.submenu-angle');
+                submenu.style.display = 'none';
+
+                var icon = parentLi.querySelector('.icon-wrap');
+                icon.classList.remove('educate-chevron-down');
+                icon.classList.add('educate-chevron-right');
+            }
+        });
+    </script>
+
+
+
+
+
+    <!-- End Header menu area -->
+    <!-- End Left menu area -->
+    <!-- Start Welcome area -->
+    <div class="all-content-wrapper">
+        <div th:replace="Admin/layout :: menutop"></div>
+
+        <!-- Single pro tab review Start-->
+        <div class="single-pro-review-area mt-t-30 mg-b-15">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="product-payment-inner-st">
+                            <ul id="myTabedu1" class="tab-review-design">
+                                <li class="active"><a href="#description">Video</a></li>
+                                <div id="myTabContent" class="tab-content custom-product-edit">
+                                    <div class="product-tab-list tab-pane fade active in">
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="review-content-section">
+                                                    <div id="dropzone1" class="pro-ad">
+                                                        <div class="row">
+                                                            <div class="container">
+                                                                <div class="select-box">
+                                                                    <div class="options-container">
+                                                                        <div class="option" ng-click="showAllCourses()">
+                                                                            <input type="radio" class="radio"
+                                                                                id="showAll" name="course"
+                                                                                ng-model="KhoaHocChon"
+                                                                                ng-value="null" />
+                                                                            <label for="showAll">Chọn
+                                                                                khóa học</label>
+                                                                        </div>
+                                                                        <div class="option"
+                                                                            ng-repeat="course in itemsKhoaHoc | filter: searchCourse"
+                                                                            ng-click="selectCourse(course)">
+                                                                            <input type="radio" class="radio"
+                                                                                id="{{ course.id }}" name="course"
+                                                                                ng-model="KhoaHocChon"
+                                                                                ng-value="course" />
+                                                                            <label for="{{ course.id }}">{{
+                                                                                course.tenKhoaHoc
+                                                                                }}</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="selected"
+                                                                        ng-bind="KhoaHocChon ? KhoaHocChon.tenKhoaHoc : 'Chọn khóa học'">
+                                                                    </div>
+                                                                    <div class="search-box">
+                                                                        <input type="text" placeholder="Start Typing..."
+                                                                            ng-model="searchCourse" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <br>
+                                                            <div id="myDiv" videoId="someValue"></div>
+
+                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                <div class="row">
+                                                                    <div class="form-check col-md-4">
+                                                                        <input type="radio" class="form-check-input"
+                                                                            id="uploadNewVideo" name="videoOption"
+                                                                            value="new" checked>
+                                                                        <label class="form-check-label"
+                                                                            for="uploadNewVideo">Tải lên video
+                                                                            mới</label>
+                                                                    </div>
+                                                                    <div class="form-check col-md-6">
+                                                                        <input type="radio" class="form-check-input"
+                                                                            id="useExistingVideo" name="videoOption"
+                                                                            value="existing">
+                                                                        <label class="form-check-label"
+                                                                            for="useExistingVideo">Sử dụng video
+                                                                            đã có trên youtube</label>
+                                                                    </div>
+                                                                </div>
+                                                                <br>
+                                                                <div class="form-container" ng-if="selectedCourse"
+                                                                    style="padding-bottom: 20px;">
+                                                                    <div ng-if="selectedCourse && MucLuc.length === 0">
+                                                                        <p>Khóa học chưa có mục lục.</p>
+                                                                    </div>
+
+                                                                    <div ng-if="selectedCourse && MucLuc.length > 0"
+                                                                        style="width: 100%;">
+                                                                        <select style="width: 100%; height: 50px;"
+                                                                            name="mucLucSelect" id="mucLucSelect"
+                                                                            ng-model="selectedMucLuc"
+                                                                            ng-change="getSelectedMucLuc(selectedMucLuc)">
+                                                                            <option value="">Chọn mục lục</option>
+                                                                            <option ng-repeat="mucLuc in MucLuc"
+                                                                                ng-if="mucLuc.id"
+                                                                                value="{{ mucLuc.id }}">{{
+                                                                                mucLuc.tenMucLuc }}</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+
+
+
+                                                                <div id="uploadNewVideoSection">
+                                                                    <!-- Phần tải lên video mới -->
+                                                                    <br>
+                                                                    <div class="form-container">
+
+                                                                        <form action="/youtube/uploadVideo"
+                                                                            method="post" enctype="multipart/form-data">
+                                                                            <input type="hidden"
+                                                                                name="${_csrf.parameterName}"
+                                                                                value="${_csrf.token}" />
+
+                                                                            <div class="form-group" id="form-title">
+                                                                                <label for="title">Tiêu đề:</label>
+                                                                                <input type="text" class="form-control"
+                                                                                    id="title" name="title" required>
+                                                                            </div>
+                                                                            <div class="form-group"
+                                                                                id="form-description">
+                                                                                <label for="description">Mô tả:</label>
+                                                                                <textarea class="form-control"
+                                                                                    id="description" name="description"
+                                                                                    required></textarea>
+                                                                            </div>
+                                                                            <div class="form-group"
+                                                                                id="form-privacyStatus">
+                                                                                <label for="privacyStatus">Quyền riêng
+                                                                                    tư:</label>
+                                                                                <select class="form-control"
+                                                                                    id="privacyStatus"
+                                                                                    name="privacyStatus" required>
+                                                                                    <option value="unlisted">không công
+                                                                                        khai
+                                                                                    </option>
+                                                                                    <option value="public">Công khai
+                                                                                    </option>
+                                                                                </select>
+                                                                            </div>
+
+                                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+                                                                                id="form-file">
+                                                                                <div class="file-upload-inner ts-forms">
+                                                                                    <div
+                                                                                        class="input prepend-small-btn">
+                                                                                        <div class="file-button">
+                                                                                            Tải Lên
+                                                                                            <input type="file"
+                                                                                                onchange="document.getElementById('prepend-small-btn').value = this.value;"
+                                                                                                id="file" name="file"
+                                                                                                accept=".mp4">
+
+                                                                                        </div>
+                                                                                        <input type="text" disabled
+                                                                                            id="prepend-small-btn"
+                                                                                            placeholder="Chưa có file or link nào">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="form-group"
+                                                                                id="authorizationTokenGroup">
+
+                                                                                <input type="hidden"
+                                                                                    class="form-control"
+                                                                                    id="authorizationUrlInput"
+                                                                                    name="authorizationUrl"
+                                                                                    th:value="${authorizationUrl}">
+                                                                                <!-- Đây là nút dẫn đến URL -->
+                                                                                <div
+                                                                                    style="text-align: center; padding-top: 60px;">
+                                                                                    <a th:href="${authorizationUrl}"
+                                                                                        class="btn btn-primary">Vui lòng
+                                                                                        đăng nhập</a>
+                                                                                </div>
+
+                                                                            </div>
+
+                                                                            <div class="form-group"
+                                                                                id="accessTokenGroup">
+                                                                                <input type="hidden"
+                                                                                    class="form-control"
+                                                                                    id="accessToken" name="accessToken"
+                                                                                    th:value="${accessToken}">
+                                                                            </div>
+
+
+
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                                <br>
+                                                                <div id="useExistingVideoSection" style="margin: 0 3px;"
+                                                                    class="row">
+                                                                    <!-- Phần nhập liên kết video từ YouTube -->
+                                                                    <div class="form-container">
+                                                                        <div class="form-group col-md-9">
+                                                                            <label for="youtubeLink">Liên kết video từ
+                                                                                YouTube:</label>
+                                                                            <input type="text" class="form-control"
+                                                                                id="youtubeLink" name="youtubeLink">
+                                                                        </div>
+                                                                        <br>
+                                                                        <button type="button" style="margin-top: 6px;"
+                                                                            class="btn btn-primary col-md-3"
+                                                                            id="showYouTubeVideo">Hiển thị
+                                                                            Video</button>
+                                                                    </div>
+                                                                </div>
+                                                                <p hidden>Giá trị order là: {{order}}</p>
+
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                        <div class="container mt-4">
+                                                            <!-- Button "Thêm" -->
+                                                            <button class="btn btn-primary mr-2"
+                                                                style="background-color: #fefefe; color: black;"
+                                                                id="addButton">Thêm</button>
+
+                                                            <!-- Button "Sửa" -->
+                                                            <button class="btn btn-warning mr-2"
+                                                                style="background-color: #fefefe; color: black;"
+                                                                onclick="editFunction()">Sửa</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br><br><br><br><br><br>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <iframe id="videoPlayer" width="560" height="315" src=""
+                                                    title="YouTube video player" frameborder="0"
+                                                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                    allowfullscreen></iframe>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="product-status mg-b-15">
+                                                    <div class="container-fluid">
+                                                        <div class="row">
+                                                            <div
+                                                                class="col-lg-12 col-md-12 col-sm-12 col-xs-12 product-status-wrap drp-lst">
+                                                                <h4>Danh Sách User</h4>
+                                                                <div class="asset-inner">
+                                                                    <table>
+                                                                        <tr>
+                                                                            <th>Khóa học</th>
+                                                                            <th>tên Video</th>
+                                                                            <th>Thu Tu</th>
+                                                                            <th>Tùy chỉnh</th>
+                                                                        </tr>
+                                                                        <tr ng-repeat="VideoWithTen in displayedItems">
+                                                                            <td>{{VideoWithTen.mucLuc.khoaHoc.tenKhoaHoc}}
+                                                                            </td>
+                                                                            <td>
+                                                                                {{VideoWithTen.tenVideo}}
+                                                                            </td>
+
+                                                                            <td>
+                                                                                {{VideoWithTen.thuTu}}
+                                                                            </td>
+                                                                            <td>
+                                                                                <span><a class="fa fa-trash-o"
+                                                                                        aria-hidden="true"
+                                                                                        ng-click="delete(VideoWithTen.id)"></a>
+
+                                                                                </span>
+                                                                            </td>
+                                                                        </tr>
+
+                                                                    </table>
+                                                                </div>
+                                                                <button class="btn btn-default"
+                                                                    ng-click="goToFirstPage()"
+                                                                    ng-disabled="currentPage === 1">Đầu</button>
+
+                                                                <button class="btn btn-default"
+                                                                    ng-click="goToPreviousPage()"
+                                                                    ng-disabled="currentPage === 1">Trước</button>
+
+                                                                <button class="btn btn-default"
+                                                                    ng-click="goToNextPage()"
+                                                                    ng-disabled="currentPage === totalItems / itemsPerPage">Sau</button>
+
+                                                                <button class="btn btn-default"
+                                                                    ng-click="goToLastPage()"
+                                                                    ng-disabled="currentPage === totalItems / itemsPerPage">Cuối</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/656a307eff45ca7d4785d6d3/1hgjcqs8o';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
+    <!-- tawk chat JS ============================================ -->
+    <script th:src="@{/Admin/js/tawk-chat.js}"></script>
+    <!-- jQuery -->
+    <!-- jQuery -->
+    <script th:src="@{/Admin/js/vendor/jquery-1.12.4.min.js}"></script>
+
+    <!-- Bootstrap -->
+    <script th:src="@{/Admin/js/bootstrap.min.js}"></script>
+
+    <!-- Wow JS -->
+    <script th:src="@{/Admin/js/wow.min.js}"></script>
+
+    <!-- Price-slider JS -->
+    <script th:src="@{/Admin/js/jquery-price-slider.js}"></script>
+
+    <!-- Meanmenu JS -->
+    <script th:src="@{/Admin/js/jquery.meanmenu.js}"></script>
+
+    <!-- Owl Carousel JS -->
+    <script th:src="@{/Admin/js/owl.carousel.min.js}"></script>
+
+    <!-- Sticky JS -->
+    <script th:src="@{/Admin/js/jquery.sticky.js}"></script>
+
+    <!-- ScrollUp JS -->
+    <script th:src="@{/Admin/js/jquery.scrollUp.min.js}"></script>
+
+    <!-- Custom Scrollbar JS -->
+    <script th:src="@{/Admin/js/scrollbar/jquery.mCustomScrollbar.concat.min.js}"></script>
+    <script th:src="@{/Admin/js/scrollbar/mCustomScrollbar-active.js}"></script>
+
+    <!-- MetisMenu JS -->
+    <script th:src="@{/Admin/js/metisMenu/metisMenu.min.js}"></script>
+    <script th:src="@{/Admin/js/metisMenu/metisMenu-active.js}"></script>
+
+    <!-- Sparkline JS -->
+    <script th:src="@{/Admin/js/sparkline/jquery.sparkline.min.js}"></script>
+    <script th:src="@{/Admin/js/sparkline/jquery.charts-sparkline.js}"></script>
+
+    <!-- Calendar JS -->
+    <script th:src="@{/Admin/js/calendar/moment.min.js}"></script>
+    <script th:src="@{/Admin/js/calendar/fullcalendar.min.js}"></script>
+    <script th:src="@{/Admin/js/calendar/fullcalendar-active.js}"></script>
+
+    <!-- Maskedinput JS -->
+    <script th:src="@{/Admin/js/jquery.maskedinput.min.js}"></script>
+    <script th:src="@{/Admin/js/masking-active.js}"></script>
+
+    <!-- Datepicker JS -->
+    <script th:src="@{/Admin/js/datepicker/jquery-ui.min.js}"></script>
+    <script th:src="@{/Admin/js/datepicker/datepicker-active.js}"></script>
+
+    <!-- Form Validate JS -->
+    <script th:src="@{/Admin/js/form-validation/jquery.form.min.js}"></script>
+    <script th:src="@{/Admin/js/form-validation/jquery.validate.min.js}"></script>
+    <script th:src="@{/Admin/js/form-validation/form-active.js}"></script>
+
+    <!-- Dropzone JS -->
+    <script th:src="@{/Admin/js/dropzone/dropzone.js}"></script>
+
+    <!-- Tab JS -->
+    <script th:src="@{/Admin/js/tab.js}"></script>
+
+    <!-- Plugins JS -->
+    <script th:src="@{/Admin/js/plugins.js}"></script>
+
+    <!-- Tawk Chat JS -->
+
+    <!-- Video Control JS -->
+    <script th:src="@{/Admin/js/Video-ctrl.js}"></script>
+
+    <!-- Thông Báo JS -->
+    <script th:src="@{/Admin/js/thongBao.js}"></script>
+</body>
+
+</html>

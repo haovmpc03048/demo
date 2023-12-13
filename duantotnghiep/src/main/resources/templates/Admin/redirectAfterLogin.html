@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirect After Login</title>
+</head>
+<body>
+    <script>
+        // JavaScript code to perform a POST request
+        window.onload = function () {
+            var form = document.createElement("form");
+            form.setAttribute("method", "post");
+            form.setAttribute("action", "/youtube/uploadVideo");
+            form.setAttribute("enctype", "multipart/form-data");
+
+            // Create hidden input fields and copy data from the HTML form
+            var csrfInput = document.createElement("input");
+            csrfInput.setAttribute("type", "hidden");
+            csrfInput.setAttribute("name", "_csrf.parameterName");
+            csrfInput.setAttribute("value", "${_csrf.token}");
+            form.appendChild(csrfInput);
+
+            var titleInput = document.createElement("input");
+            titleInput.setAttribute("type", "text");
+            titleInput.setAttribute("name", "title");
+            titleInput.setAttribute("value", document.getElementById("title").value);
+            form.appendChild(titleInput);
+
+            var descriptionInput = document.createElement("textarea");
+            descriptionInput.setAttribute("name", "description");
+            descriptionInput.textContent = document.getElementById("description").value;
+            form.appendChild(descriptionInput);
+
+            var privacyStatusInput = document.createElement("input");
+            privacyStatusInput.setAttribute("type", "text");
+            privacyStatusInput.setAttribute("name", "privacyStatus");
+            privacyStatusInput.setAttribute("value", document.getElementById("privacyStatus").value);
+            form.appendChild(privacyStatusInput);
+
+            var fileInput = document.createElement("input");
+            fileInput.setAttribute("type", "file");
+            fileInput.setAttribute("name", "file");
+            fileInput.setAttribute("accept", ".mp4");
+            form.appendChild(fileInput);
+
+            document.body.appendChild(form);
+            form.submit();
+        }
+    </script>
+</body>
+</html>
