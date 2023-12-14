@@ -1,0 +1,783 @@
+<!doctype html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Thống kê PolyAcademy</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/Admin/img/favicon.ico}">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/Admin/css/bootstrap.min.css}" />
+
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" th:href="@{/Admin/css/font-awesome.min.css}" />
+
+    <!-- Owl Carousel CSS -->
+    <link rel="stylesheet" th:href="@{/Admin/css/owl.carousel.css}" />
+    <link rel="stylesheet" th:href="@{/Admin/css/owl.theme.css}" />
+    <link rel="stylesheet" th:href="@{/Admin/css/owl.transitions.css}" />
+
+    <!-- Animate CSS -->
+    <link rel="stylesheet" th:href="@{/Admin/css/animate.css}" />
+
+    <!-- Normalize CSS -->
+    <link rel="stylesheet" th:href="@{/Admin/css/normalize.css}" />
+
+    <!-- Meanmenu Icon CSS -->
+    <link rel="stylesheet" th:href="@{/Admin/css/meanmenu.min.css}" />
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" th:href="@{/Admin/css/main.css}" />
+
+    <!-- Educate Icon CSS -->
+    <link rel="stylesheet" th:href="@{/Admin/css/educate-custon-icon.css}" />
+
+    <!-- Morrisjs CSS -->
+    <link rel="stylesheet" th:href="@{/Admin/css/morrisjs/morris.css}" />
+
+    <!-- Custom Scrollbar CSS -->
+    <link rel="stylesheet" th:href="@{/Admin/css/scrollbar/jquery.mCustomScrollbar.min.css}" />
+
+    <!-- MetisMenu CSS -->
+    <link rel="stylesheet" th:href="@{/Admin/css/metisMenu/metisMenu.min.css}" />
+    <link rel="stylesheet" th:href="@{/Admin/css/metisMenu/metisMenu-vertical.css}" />
+
+    <!-- Calendar CSS -->
+    <link rel="stylesheet" th:href="@{/Admin/css/calendar/fullcalendar.min.css}" />
+    <link rel="stylesheet" th:href="@{/Admin/css/calendar/fullcalendar.print.min.css}" />
+
+    <!-- X-editor CSS -->
+    <link rel="stylesheet" th:href="@{/Admin/css/editor/select2.css}" />
+    <link rel="stylesheet" th:href="@{/Admin/css/editor/datetimepicker.css}" />
+    <link rel="stylesheet" th:href="@{/Admin/css/editor/bootstrap-editable.css}" />
+    <link rel="stylesheet" th:href="@{/Admin/css/editor/x-editor-style.css}" />
+
+    <!-- Data Table CSS -->
+    <link rel="stylesheet" th:href="@{/Admin/css/data-table/bootstrap-table.css}" />
+    <link rel="stylesheet" th:href="@{/Admin/css/data-table/bootstrap-editable.css}" />
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" th:href="@{/Admin/css/style.css}" />
+
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" th:href="@{/Admin/css/responsive.css}" />
+
+    <!-- Modernizr JS -->
+    <script th:src="@{/Admin/js/vendor/modernizr-2.8.3.min.js}"></script>
+    <!-- AngularJS -->
+    <script th:src="@{https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js}"></script>
+    <script th:src="@{https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js}"></script>
+
+
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fffcfc;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        .close {
+            color: #323030;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+        }
+
+        .tab button:hover {
+            background-color: #ddd;
+        }
+
+        .tab button.active {
+            background-color: #ccc;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+    </style>
+
+</head>
+
+<body ng-app="myApp" ng-controller="revenue-ctrl">
+    <!--[if lt IE 8]>
+		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
+    <!-- Start Left menu area -->
+    <div class="left-sidebar-pro">
+        <nav id="sidebar" class="">
+            <div class="sidebar-header">
+                <a th:href="@{/index}"><img class="main-logo" th:src="@{/img/LogoPLA.png}" style="width: 150px;"
+                        alt="" /></a>
+            </div>
+            <div class="left-custom-menu-adp-wrap comment-scrollbar">
+                <nav class="sidebar-nav left-sidebar-menu-pro">
+                    <ul class="metismenu" id="menu1">
+                        <li class="active">
+                            <a class="has-arrow" th:href="@{/Admin/index1}">
+                                <span class="educate-icon educate-home icon-wrap"></span>
+                                <span class="mini-click-non">Thống Kê</span>
+                            </a>
+                            <ul class="submenu-angle" aria-expanded="true">
+                                <li><a title="Dashboard v.1" th:href="@{/Admin/ThongKe}"><span
+                                            class="mini-sub-pro">Thống
+                                            Kê</span></a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a class="has-arrow" th:href="@{/Admin/all-professors}" aria-expanded="false"><span
+                                    class="educate-icon educate-professor icon-wrap"></span> <span
+                                    class="mini-click-non">Người dùng</span></a>
+                            <ul class="submenu-angle" aria-expanded="false">
+                                <li><a title="Edit Professor" th:href="@{/Admin/User}"><span class="mini-sub-pro">Quản
+                                            lý người
+                                            dùng</span></a></li>
+                                <li><a title="All Students" th:href="@{/Admin/HocVien}"><span class="mini-sub-pro"> Quản
+                                            Lí
+                                            Học viên</span></a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a class="has-arrow" th:href="@{/Admin/KhoaHoc}" aria-expanded="false"><span
+                                    class="educate-icon educate-course icon-wrap"></span> <span
+                                    class="mini-click-non">Khóa Học</span></a>
+                            <ul class="submenu-angle" aria-expanded="false">
+
+                                <li><a title="Add Courses" th:href="@{/Admin/EditKhoaHoc}"><span
+                                            class="mini-sub-pro">Thêm Khóa
+                                            Học</span></a></li>
+                                <li><a title="Add Courses" th:href="@{/Admin/KenhKhoaHoc}"><span
+                                            class="mini-sub-pro">Kênh Khóa
+                                            Học</span></a></li>
+
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="has-arrow" th:href="@{/Admin/TaiLieu}" aria-expanded="false"><span
+                                    class="educate-icon educate-library icon-wrap"></span> <span
+                                    class="mini-click-non">Tài Liệu</span></a>
+                            <ul class="submenu-angle" aria-expanded="false">
+                                <li><a title="All Library" th:href="@{/Admin/TaiLieu}"><span class="mini-sub-pro">Quản
+                                            Lí Tài
+                                            Liệu</span></a></li>
+                                <li><a title="All Library" th:href="@{/Admin/CauHoi}"><span class="mini-sub-pro">Câu
+                                            Hỏi</span></a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="has-arrow" th:href="@{/Admin/ChungChi}" aria-expanded="false"><span
+                                    class="educate-icon educate-department icon-wrap"></span> <span
+                                    class="mini-click-non">Chúng nhận</span></a>
+                            <ul class="submenu-angle" aria-expanded="false">
+                                <li><a title="ChungChi List" th:href="@{/Admin/ChungChi}"><span
+                                            class="mini-sub-pro">Chứng
+                                            Nhận</span></a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="has-arrow" th:href="@{/Admin/Video}" aria-expanded="false"> <span
+                                    class="glyphicon glyphicon-expand"></span> <span
+                                    class="mini-click-non">Video</span></a>
+                            <ul class="submenu-angle" aria-expanded="false">
+                                <li><a title="Inbox" th:href="@{/Admin/Video}"><span
+                                            class="mini-sub-pro">Video</span></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </nav>
+    </div>
+
+    <!-- End Left menu area -->
+    <!-- Start Welcome area -->
+    <div class="all-content-wrapper">
+        <div th:replace="Admin/layout :: menutop"></div>
+
+        <!-- Static Table Start -->
+
+        <div class="traffice-source-area mg-b-30">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <div class="white-box analytics-info-cs">
+                            <h3 class="box-title" style="font-size: 18px;">Tổng Doanh Thu  <i class="fa fa-money" aria-hidden="true"></i></h3>
+                            <ul class="list-inline  ">
+                                <li>
+                                    <div id="sparklinedash"></div>
+                                </li>
+                                <li class="text-right sp-cn-r"><i class="fa fa-level-up" aria-hidden="true"></i> <span
+                                        class="counter text-success"><span class="counter">{{
+                                            formatCurrency(totalRevenue)}}</span></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <div class="white-box analytics-info-cs">
+                            <h3 class="box-title" style="font-size: 18px;">   Doanh thu trong ngày <i class="fa fa-money" aria-hidden="true"></i></h3>
+                            <ul class="list-inline  ">
+                                <li>
+                                    <div id="sparklinedash"></div>
+                                </li>
+                                <li class="text-right sp-cn-r"><i class="fa fa-level-up" aria-hidden="true"></i> <span
+                                        class="counter text-success"><span class="counter">{{
+                                            formatCurrency(DoanhThuTrongNgay)}}</span></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <style>
+                        .custom-form {
+                            display: flex;
+                            flex-direction: column;
+                            max-width: 300px;
+                            margin: 0 auto;
+                        }
+
+                        .form-group {
+                            margin-bottom: 15px;
+                        }
+
+                        label {
+                            margin-bottom: 5px;
+                            display: block;
+                        }
+
+                        input[type="date"],
+                        button {
+                            padding: 8px;
+                            font-size: 16px;
+                            border-radius: 5px;
+                            border: 1px solid #ccc;
+                        }
+
+                        button {
+                            cursor: pointer;
+                            background-color: #28a745;
+                            color: #fff;
+                            border: none;
+                            transition: background-color 0.3s ease;
+                        }
+
+                        button:hover {
+                            background-color: #218838;
+                        }
+                    </style>
+                  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12" style="width: 40%;">
+                    <div class="white-box analytics-info-cs res-mg-t-30 res-tablet-mg-t-30 dk-res-t-pro-30">
+                        <form class="custom-form" style="max-width: 500px;">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <label style="font-size: 18px;"><i class="fa fa-bar-chart" aria-hidden="true"></i> Tra cứu doanh thu</label>
+                                </div>
+                                <div class="col-md-2">
+                                    <button id="toggleDateInputs" style="font-size: 12px; background: none; color: #000; border: none;">
+                                        <i id="arrowIcon" class="fa fa-chevron-down"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <ul class="list-inline  ">
+                                <li>
+                                    <div id="sparklinedash"></div>
+                                </li>
+                                <li class="text-right sp-cn-r" ><i class="fa fa-level-up" style="color: #fff;" aria-hidden="true"></i> <span
+                                        class="counter text-success"><span class="counter">
+                                          
+                                </li>
+                            </ul>
+                            <div class="date-inputs row" style="display: none;">
+                                <hr>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label for="startDate">Từ ngày:</label>
+                                        <input type="date" id="start" name="trip-start" ng-model="thoigian.batDau" />
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label for="endDate">Đến ngày:</label>
+                                        <input type="date" id="end" name="trip-end" ng-model="thoigian.ketThuc" />
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <button id="basicSuccess" class="btn btn-success" 
+                                        ng-click="ThongKeTheoThoiGian()" 
+                                        style="background-color: #fefefe; color: black; border: 1px #888 solid; margin-top: 58%;margin-left: -33%;"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                    </div>
+                                </div>
+                               
+                                    <div class="col-md-3" style="margin-top: -12%;"> 
+                                        <div class="form-group">
+                                            <button id="basicSuccess" class="btn btn-success" 
+                                        ng-click="ThongKeThangNay()" 
+                                        style="background-color: #fefefe; color: black; border: 1px #888 solid; margin-top: 69%;margin-left: -3%;">Tháng này</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3" style="margin-top: -12%;"> 
+                                        <div class="form-group">
+                                            <button id="basicSuccess" class="btn btn-success" 
+                                        ng-click="ThongKeNamNay()" 
+                                        style="background-color: #fefefe; color: black; border: 1px #888 solid; margin-top: 69%;margin-left: -3%;">Năm nay</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3" style="margin-top: -12%;"> 
+                                        <div class="form-group">
+                                            <button id="basicSuccess" class="btn btn-success" 
+                                        ng-click="ThongKeNamTruoc()" 
+                                        style="background-color: #fefefe; color: black; border: 1px #888 solid; margin-top: 69%;margin-left: -3%;">Năm trước</button>
+                                        </div>
+                                    </div>
+                                
+                                
+                            </div>
+                           
+                        </form>
+                    </div>
+                </div>
+                
+                
+                
+               
+                
+                </div>
+            </div>
+        </div>
+        <!-- Main content -->
+        <section class="content">
+            <!-- /.col-md-6 -->
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header border-0">
+
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <p class="d-flex flex-column">
+
+                            </p>
+
+                        </div>
+                        <!-- /.d-flex -->
+
+                        <div class="position-relative mb-4">
+                            <canvas id="revenue-chart" height="100"></canvas>
+                        </div>
+                        <div class="tenbedo" style=" font-size: 16px; text-align: center;">Biểu đồ tổng doanh thu</div>
+
+                    </div>
+                </div>
+                <!-- /.card -->
+        </section>
+        <!-- /.content -->
+
+
+        <div id="tab1" class="tabcontent" style="display: block;">
+            <div class="data-table-area mg-b-15">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="sparkline13-list">
+                                <div class="sparkline13-hd">
+                                    <div class="main-sparkline13-hd">
+                                        <h1>Bảng <span class="table-project-n">Thống Kê</span> Khóa học</h1>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="product-status-wrap drp-lst">
+                                            <div class="asset-inner row">
+                                                <div class="container">
+                                                    <style>
+                                                        .custom-table {
+                                                            width: 100%;
+                                                            border-collapse: collapse;
+                                                        }
+
+                                                        .custom-table th,
+                                                        .custom-table td {
+                                                            padding: 8px;
+                                                            text-align: left;
+                                                        }
+                                                    </style>
+                                                    <table class="custom-table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>No</th>
+                                                                <th>Tên khóa học</th>
+                                                                <th>Người tạo</th>
+                                                                <th>Tùy chỉnh</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="item in pager.loadKhoaHoc">
+                                                                <td>{{ $index + 1 }}</td>
+                                                                <td>{{item.tenKhoaHoc}}</td>
+                                                                <td>{{item.nguoiTao.hoTen}}</td>
+                                                                <td><button class="fa fa-cog" aria-hidden="true"
+                                                                        ng-click="editbr(item)"  style="background-color: #fefefe; color: black;"> Xem</button></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                    <div class="panel-footer text-center">
+                                                        <button ng-click="pager.first()" class="btn btn-primary"  style="background-color: #fefefe; color: black;">
+                                                            <i class="fa fa-arrow-circle-up"></i>
+                                                        </button>
+                                                        <button ng-click="pager.prev()" class="btn btn-primary"  style="background-color: #fefefe; color: black;">
+                                                            <i class="fa fa-arrow-circle-left"></i>
+                                                        </button>
+                                                        <button class="btn btn-success"  style="background-color: #fefefe; color: black;">{{pager.page +1}} of
+                                                            {{pager.count}}</button>
+                                                        <button ng-click="pager.next()" class="btn btn-primary"  style="background-color: #fefefe; color: black;">
+                                                            <i class="fa fa-arrow-circle-right"></i>
+                                                        </button>
+                                                        <button ng-click="pager.last()" class="btn btn-primary"  style="background-color: #fefefe; color: black;">
+                                                            <i class="fa fa-arrow-circle-down"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <!-- Nội dung của modal ở đây -->
+            <span class="close" ng-click="closeModal()">&times;</span>
+            <h2>{{ modalItem.tenKhoaHoc }}</h2>
+            <div class="traffice-source-area mg-b-30">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="white-box analytics-info-cs">
+                                <h3 class="box-title">Tổng Doanh Thu</h3>
+                                <ul class="list-inline  ">
+                                    <li>
+                                        <div id="sparklinedash"></div>
+                                    </li>
+                                    <li class="text-right sp-cn-r"><i class="fa fa-level-up" aria-hidden="true"></i>
+                                        <span class="counter text-success"><span class="counter">{{
+                                                formatCurrency(totalRevenue2)}}</span></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="white-box analytics-info-cs">
+                                <h3 class="box-title">Số người học</h3>
+                                <ul class="list-inline  ">
+                                    <li>
+                                        <div id="sparklinedash"></div>
+                                    </li>
+                                    <li class="text-right sp-cn-r"><i class="fa fa-level-up" aria-hidden="true"></i>
+                                        <span class="counter text-success"><span
+                                                class="counter">{{SoNguoi}}</span></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <style>
+                            .custom-form {
+                                display: flex;
+                                flex-direction: column;
+                                max-width: 300px;
+                                margin: 0 auto;
+                            }
+    
+                            .form-group {
+                                margin-bottom: 15px;
+                            }
+    
+                            label {
+                                margin-bottom: 5px;
+                                display: block;
+                            }
+    
+                            input[type="date"],
+                            button {
+                                padding: 8px;
+                                font-size: 16px;
+                                border-radius: 5px;
+                                border: 1px solid #ccc;
+                            }
+    
+                            button {
+                                cursor: pointer;
+                                background-color: #28a745;
+                                color: #fff;
+                                border: none;
+                                transition: background-color 0.3s ease;
+                            }
+    
+                            button:hover {
+                                background-color: #218838;
+                            }
+                        </style>
+                      <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12" style="width: 40%;">
+                        <div class="white-box analytics-info-cs res-mg-t-30 res-tablet-mg-t-30 dk-res-t-pro-30">
+                            <form class="custom-form" style="max-width: 500px;">
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <label style="font-size: 18px;"><i class="fa fa-bar-chart" aria-hidden="true"></i> Tra cứu doanh thu</label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button id="toggleDateInputs2" style="font-size: 12px; background: none; color: #000; border: none;">
+                                            <i id="arrowIcon2" class="fa fa-chevron-down"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <ul class="list-inline  ">
+                                    <li>
+                                        <div id="sparklinedash"></div>
+                                    </li>
+                                    <li class="text-right sp-cn-r" ><i class="fa fa-level-up" style="color: #fff;" aria-hidden="true"></i> <span
+                                            class="counter text-success"><span class="counter">
+                                              
+                                    </li>
+                                </ul>
+                                <div class="date-inputs2 row" style="display: none;">
+                                    <hr>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label for="startDate">Từ ngày:</label>
+                                            <input type="date" id="start2" name="trip-start2" ng-model="thoigiankhoahoc.batDau" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label for="endDate">Đến ngày:</label>
+                                            <input type="date" id="end2" name="trip-end2" ng-model="thoigiankhoahoc.ketThuc" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <button id="basicSuccess" class="btn btn-success" 
+                                            ng-click="ThongKeTheoKhoaHoc()" 
+                                            style="background-color: #fefefe; color: black; border: 1px #888 solid; margin-top: 69%;margin-left: -3%;"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                        </div>
+                                    </div>
+                                    </div>
+                            </form>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bieudo" style="height: 400px; width: 100%;">
+                <section class="content">
+                    <!-- /.col-md-6 -->
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header border-0">
+
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <p class="d-flex flex-column">
+
+                                    </p>
+
+                                </div>
+                                <!-- /.d-flex -->
+
+                                <div class="position-relative mb-4">
+                                    <canvas id="revenue-chart2" height="100"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card -->
+                </section>
+            </div>
+            <!-- Main content -->
+
+            <!-- Thêm các trường dữ liệu khác bạn muốn hiển thị -->
+        </div>
+    </div>
+
+</body>
+<!-- Static Table End -->
+
+<!-- jQuery -->
+<script th:src="@{/Admin/js/vendor/jquery-1.12.4.min.js}"></script>
+
+<!-- Bootstrap JS -->
+<script th:src="@{/Admin/js/bootstrap.min.js}"></script>
+
+<!-- Wow JS -->
+<script th:src="@{/Admin/js/wow.min.js}"></script>
+
+<!-- Price-slider JS -->
+<script th:src="@{/Admin/js/jquery-price-slider.js}"></script>
+
+<!-- Meanmenu JS -->
+<script th:src="@{/Admin/js/jquery.meanmenu.js}"></script>
+
+<!-- Owl.carousel JS -->
+<script th:src="@{/Admin/js/owl.carousel.min.js}"></script>
+
+<!-- Sticky JS -->
+<script th:src="@{/Admin/js/jquery.sticky.js}"></script>
+
+<!-- ScrollUp JS -->
+<script th:src="@{/Admin/js/jquery.scrollUp.min.js}"></script>
+
+<!-- Custom Scrollbar JS -->
+<script th:src="@{/Admin/js/scrollbar/jquery.mCustomScrollbar.concat.min.js}"></script>
+<script th:src="@{/Admin/js/scrollbar/mCustomScrollbar-active.js}"></script>
+
+<!-- MetisMenu JS -->
+<script th:src="@{/Admin/js/metisMenu/metisMenu.min.js}"></script>
+<script th:src="@{/Admin/js/metisMenu/metisMenu-active.js}"></script>
+
+<!-- Data Table JS -->
+<script th:src="@{/Admin/js/data-table/bootstrap-table.js}"></script>
+<script th:src="@{/Admin/js/data-table/tableExport.js}"></script>
+<script th:src="@{/Admin/js/data-table/data-table-active.js}"></script>
+<script th:src="@{/Admin/js/data-table/bootstrap-table-editable.js}"></script>
+<script th:src="@{/Admin/js/data-table/bootstrap-editable.js}"></script>
+<script th:src="@{/Admin/js/data-table/bootstrap-table-resizable.js}"></script>
+<script th:src="@{/Admin/js/data-table/colResizable-1.5.source.js}"></script>
+<script th:src="@{/Admin/js/data-table/bootstrap-table-export.js}"></script>
+
+<!-- Editable JS -->
+<script th:src="@{/Admin/js/editable/jquery.mockjax.js}"></script>
+<script th:src="@{/Admin/js/editable/mock-active.js}"></script>
+<script th:src="@{/Admin/js/editable/select2.js}"></script>
+<script th:src="@{/Admin/js/editable/moment.min.js}"></script>
+<script th:src="@{/Admin/js/editable/bootstrap-datetimepicker.js}"></script>
+<script th:src="@{/Admin/js/editable/bootstrap-editable.js}"></script>
+<script th:src="@{/Admin/js/editable/xediable-active.js}"></script>
+
+<!-- Chart JS -->
+<script th:src="@{/Admin/js/chart/jquery.peity.min.js}"></script>
+<script th:src="@{/Admin/js/peity/peity-active.js}"></script>
+
+<!-- Tab JS -->
+<script th:src="@{/Admin/js/tab.js}"></script>
+
+<!-- Plugins JS -->
+<script th:src="@{/Admin/js/plugins.js}"></script>
+
+<!-- Main JS -->
+<script th:src="@{/Admin/js/main.js}"></script>
+
+<!-- Tawk chat JS -->
+<script th:src="@{/Admin/js/tawk-chat.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js}"></script>
+
+<script th:src="@{/Admin/js/ThongKeDoanhThu.js}"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#toggleDateInputs").click(function () {
+            $(".date-inputs").toggle();
+            $("#arrowIcon").toggleClass("fa-chevron-down fa-chevron-up");
+        });
+        $("#toggleDateInputs2").click(function () {
+            $(".date-inputs2").toggle();
+            $("#arrowIcon2").toggleClass("fa-chevron-down fa-chevron-up");
+        });
+    });
+</script>
+
+
+<script>
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].classList.remove("active");
+        }
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.classList.add("active");
+    }
+
+</script>
+<script th:src="@{/Admin/js/thongBao.js}"></script>
+<script type="text/javascript">
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    (function () {
+        var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = 'https://embed.tawk.to/656a307eff45ca7d4785d6d3/1hgjcqs8o';
+        s1.charset = 'UTF-8';
+        s1.setAttribute('crossorigin', '*');
+        s0.parentNode.insertBefore(s1, s0);
+    })();
+</script>
+</body>
+
+</html>

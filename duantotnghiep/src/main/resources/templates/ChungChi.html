@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<title>PolyAcademy</title>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<meta content="Free HTML Templates" name="keywords">
+	<meta content="Free HTML Templates" name="description">
+
+	<!-- Favicon -->
+	<link th:href="@{img/favicon.ico}" rel="icon">
+
+	<!-- Google Web Fonts -->
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-cookies.min.js"></script>
+
+	<!-- Font Awesome -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+	<!-- Libraries Stylesheet -->
+	<link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+	<!-- Customized Bootstrap Stylesheet -->
+	<link href="/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+	<!-- Topbar Start -->
+<div class="container-fluid d-none d-lg-block">
+    <div class="row align-items-center py-4 px-xl-5">
+        <div class="col-lg-3">
+            <a href="" class="text-decoration-none">
+                <h1 class="m-0">
+                    <span class="text-primary">Poly</span>Academy
+                </h1>
+            </a>
+        </div>
+        <div class="col-lg-3 text-right">
+            <div class="d-inline-flex align-items-center">
+                <i class="fa fa-2x fa-map-marker-alt text-primary mr-3"></i>
+                <div class="text-left">
+                    <h6 class="font-weight-semi-bold mb-1">Văn phòng của chúng tôi</h6>
+                    <small>22 Thường Thạnh, Cái Răng, Cần Thơ</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 text-right">
+            <div class="d-inline-flex align-items-center">
+                <i class="fa fa-2x fa-envelope text-primary mr-3"></i>
+                <div class="text-left">
+                    <h6 class="font-weight-semi-bold mb-1">Email của chúng tôi</h6>
+                    <small>PolyAcademy@fpt.edu.vn</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 text-right">
+            <div class="d-inline-flex align-items-center">
+                <i class="fa fa-2x fa-phone text-primary mr-3"></i>
+                <div class="text-left">
+                    <h6 class="font-weight-semi-bold mb-1">Gọi cho chúng tôi</h6>
+                    <small>+012 345 6789</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+
+<style type='text/css'>
+	@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+
+	body,
+	html {
+		margin: 0;
+		padding: 0;
+	}
+
+	body {
+		color: black;
+		font-family: 'Roboto', sans-serif;
+		font-size: 30px;
+		text-align: center;
+		background-size: cover;
+		background-repeat: no-repeat;
+		height: 100%;
+		width: 100%;
+		overflow-x: hidden; /* Hide horizontal scrollbar */
+	}
+
+	.topbar {
+		background-color: #d4d5d1;
+		padding: 20px;
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	}
+
+	.topbar h1 {
+		margin: 0;
+	}
+
+	.container {
+			position: relative;
+			margin: 20px auto;
+			max-width: 1500px;
+			height: 750px;
+			border: 2px solid #ccc;
+			border-radius: 10px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			background-size: cover;
+			color: #090909;
+			text-align: center;
+			background-size: cover;
+			background-position: center;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			width: 90%;
+		}
+
+	.logo {
+		background-size: contain;
+		background-repeat: no-repeat;
+		padding: 20px;
+		width: 10%;
+		height: 10%;
+		box-sizing: border-box;
+		margin: 0 auto;
+		position: absolute;
+		top: 50px;
+		left: 50px;
+		border-radius: 50%; /* Thêm thuộc tính bo tròn góc */
+	}
+
+	.marquee {
+		color: rgb(243, 159, 49);
+		font-size: 80px;
+		margin: 20px;
+	}
+
+	.assignment {
+		margin: 20px;
+	}
+
+	.person {
+		border-bottom: 2px solid rgb(0, 0, 0);
+		font-size: 40px;
+		font-style: italic;
+		margin: 20px auto;
+		max-width: 400px;
+	}
+
+	.reason {
+		margin: 20px;
+		font-size: 35px;
+	}
+
+	.date {
+		position: absolute;
+		bottom: 10px;
+		left: 400px;
+		text-align: left;
+		width: 100%;
+		
+	}
+
+	.date p {
+		margin: 25px 0;
+	}
+</style>
+
+	<div >
+		<div class="container" th:style="'background-image: url(' + @{/img/chungchi.jpg} + ');'">
+            <div class="logo">
+				<img th:src="@{/img/LogoPLA.png}" alt="PolyAcademy Logo" height="150px" width="150px">
+            </div>
+
+            <div class="marquee">
+                Giấy Chứng Nhận
+            </div>
+
+            <div class="assignment">
+				Giấy chứng nhận này được cấp cho:
+            </div>
+
+            <div class="person">
+				<span th:text="${chungChi.nguoiDung.hoTen}"></span>
+            </div>
+
+            <div class="reason">
+                Đã xuất sắc hoàn thành khoá học:<br/>
+                <span th:text="${chungChi.khoaHoc.tenKhoaHoc}"></span>
+            </div>
+			<div class="email">
+            </div>	
+			<div class="date">
+			<p>Ngày cấp: <span
+					th:text="${#dates.format(chungChi.ngayCap, ' dd/MM/yyyy HH:mm:ss')}"></span></p>
+					<p>Email: <span
+						th:text="${chungChi.nguoiDung.email}"></span></p>
+            </div>
+		</div> 
+	</div>
+		
+
+
+	<!-- JavaScript Libraries -->
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Contact Javascript File -->
+	<script src="mail/jqBootstrapValidation.min.js"></script>
+	<script src="mail/contact.js"></script>
+
+	<!-- Template Javascript -->
+	<script src="js/main.js"></script>
+	<script src="js/client.js"></script>
+	<script>
+		var priceElements = document.querySelectorAll("#price");
+		var currencyFormatter = new Intl.NumberFormat("vi-VN", {
+			style: "currency",
+			currency: "VND"
+		});
+		priceElements.forEach(function (element) {
+			var rawPrice = element.textContent.trim();
+			var formattedPrice = currencyFormatter.format(parseFloat(rawPrice));
+			element.textContent = formattedPrice;
+		});
+	</script>
+</body>
+
+</html>

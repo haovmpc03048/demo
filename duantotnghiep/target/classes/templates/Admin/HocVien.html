@@ -1,0 +1,385 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>Edit Professor | Kiaalap - Kiaalap Admin Template</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Add this link in the head section of your HTML -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+		integrity="sha512-BEn5b4ZBVvn5zwnPZ7P5l9TSpdRWAa1i9AxFZ72a6Q1AXEitg98tY5NHavf8OESK9OaWo+6NTtF0CqHlLhRkPg=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" type="image/x-icon" th:href="@{/Admin/img/favicon.ico}">
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" th:href="@{/Admin/css/bootstrap.min.css}">
+
+	<!-- Font Awesome CSS -->
+	<link rel="stylesheet" th:href="@{/Admin/css/font-awesome.min.css}">
+
+	<!-- Owl Carousel CSS -->
+	<link rel="stylesheet" th:href="@{/Admin/css/owl.carousel.css}">
+	<link rel="stylesheet" th:href="@{/Admin/css/owl.theme.css}">
+	<link rel="stylesheet" th:href="@{/Admin/css/owl.transitions.css}">
+
+	<!-- Animate CSS -->
+	<link rel="stylesheet" th:href="@{/Admin/css/animate.css}">
+
+	<!-- Normalize CSS -->
+	<link rel="stylesheet" th:href="@{/Admin/css/normalize.css}">
+
+	<!-- Meanmenu Icon CSS -->
+	<link rel="stylesheet" th:href="@{/Admin/css/meanmenu.min.css}">
+
+	<!-- Main CSS -->
+	<link rel="stylesheet" th:href="@{/Admin/css/main.css}">
+
+	<!-- Educate Icon CSS -->
+	<link rel="stylesheet" th:href="@{/Admin/css/educate-custon-icon.css}">
+
+	<!-- MorrisJS CSS -->
+	<link rel="stylesheet" th:href="@{/Admin/css/morrisjs/morris.css}">
+
+	<!-- Custom Scrollbar CSS -->
+	<link rel="stylesheet" th:href="@{/Admin/css/scrollbar/jquery.mCustomScrollbar.min.css}">
+
+	<!-- MetisMenu CSS -->
+	<link rel="stylesheet" th:href="@{/Admin/css/metisMenu/metisMenu.min.css}">
+	<link rel="stylesheet" th:href="@{/Admin/css/metisMenu/metisMenu-vertical.css}">
+
+	<!-- Calendar CSS -->
+	<link rel="stylesheet" th:href="@{/Admin/css/calendar/fullcalendar.min.css}">
+	<link rel="stylesheet" th:href="@{/Admin/css/calendar/fullcalendar.print.min.css}">
+
+	<!-- Forms CSS -->
+	<link rel="stylesheet" th:href="@{/Admin/css/form/all-type-forms.css}">
+
+	<!-- Dropzone CSS -->
+	<link rel="stylesheet" th:href="@{/Admin/css/dropzone/dropzone.css}">
+
+	<!-- Style CSS -->
+	<link rel="stylesheet" th:href="@{/Admin/css/style.css}">
+	<!-- Responsive CSS -->
+	<link rel="stylesheet" th:href="@{/Admin/css/responsive.css}">
+
+	<!-- Modernizr JS -->
+	<script th:src="@{/Admin/js/vendor/modernizr-2.8.3.min.js}"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+</head>
+
+
+<body>
+	<!--[if lt IE 8]>
+		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
+	<!-- Start Left menu area -->
+	<!-- Start Header menu area -->
+	<div class="left-sidebar-pro">
+		<nav id="sidebar" class="">
+			<div class="sidebar-header">
+				<a th:href="@{/index}"><img class="main-logo" th:src="@{/img/LogoPLA.png}" style="width: 150px;"
+						alt="" /></a>
+			</div>
+			<div class="left-custom-menu-adp-wrap comment-scrollbar">
+				<nav class="sidebar-nav left-sidebar-menu-pro">
+					<ul class="metismenu" id="menu1">
+						<li><a class="has-arrow" th:href="@{/Admin/index1}"> <span
+									class="educate-icon educate-home icon-wrap"></span> <span
+									class="mini-click-non">Thống kê</span>
+							</a>
+							<ul class="submenu-angle" aria-expanded="true">
+								<li><a title="Dashboard v.1" th:href="@{/Admin/ThongKe}"><span
+											class="mini-sub-pro">Thống Kê</span></a></li>
+							</ul>
+						</li>
+
+						<li class="active"><a class="has-arrow" th:href="@{/Admin/all-professors}"
+								aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span>
+								<span class="mini-click-non">Người dùng</span></a>
+							<ul class="submenu-angle" aria-expanded="false">
+								<li><a title="Edit Professor" th:href="@{/Admin/User}"><span class="mini-sub-pro">Quản
+											lý người dùng</span></a></li>
+								<li><a title="All Students" th:href="@{/Admin/HocVien}"><span class="mini-sub-pro"> Quản
+											Lí
+											Học viên</span></a></li>
+							</ul>
+						</li>
+						<li><a class="has-arrow" th:href="@{/Admin/KhoaHoc}" aria-expanded="false"><span
+									class="educate-icon educate-course icon-wrap"></span> <span
+									class="mini-click-non">Khóa Học</span></a>
+							<ul class="submenu-angle" aria-expanded="false">
+								<li><a title="Add Courses" th:href="@{/Admin/EditKhoaHoc}"><span
+											class="mini-sub-pro">Thêm Khóa Học</span></a></li>
+								<li><a title="Add Courses" th:href="@{/Admin/KenhKhoaHoc}"><span
+											class="mini-sub-pro">Kênh Khóa Học</span></a></li>
+
+							</ul>
+						</li>
+						<li><a class="has-arrow" th:href="@{/Admin/TaiLieu}" aria-expanded="false"><span
+									class="educate-icon educate-library icon-wrap"></span> <span
+									class="mini-click-non">Tài Liệu</span></a>
+							<ul class="submenu-angle" aria-expanded="false">
+								<li><a title="All Library" th:href="@{/Admin/TaiLieu}"><span class="mini-sub-pro">Quản
+											Lí Tài Liệu</span></a></li>
+								<li><a title="All Library" th:href="@{/Admin/CauHoi}"><span class="mini-sub-pro">Câu
+											Hỏi</span></a></li>
+							</ul>
+						</li>
+						<li><a class="has-arrow" th:href="@{/Admin/ChungChi}" aria-expanded="false"><span
+									class="educate-icon educate-department icon-wrap"></span> <span
+									class="mini-click-non">Chúng nhận</span></a>
+							<ul class="submenu-angle" aria-expanded="false">
+								<li><a title="ChungChi List" th:href="@{/Admin/ChungChi}"><span
+											class="mini-sub-pro">Chúng nhận</span></a></li>
+							</ul>
+						</li>
+						<li><a class="has-arrow" th:href="@{/Admin/Video}" aria-expanded="false"><span
+									class="educate-icon educate-message icon-wrap"></span> <span
+									class="mini-click-non">Video</span></a>
+							<ul class="submenu-angle" aria-expanded="false">
+								<li><a title="Inbox" th:href="@{/Admin/Video}"><span
+											class="mini-sub-pro">Video</span></a></li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</nav>
+	</div>
+	<!-- End Header menu area -->
+	<!-- End Left menu area -->
+	<!-- Start Welcome area -->
+	<div class="all-content-wrapper">
+		<div th:replace="Admin/layout :: menutop"></div>
+
+		<!-- Single pro tab review Start-->
+		<div class="single-pro-review-area mt-t-30 mg-b-15">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="product-payment-inner-st">
+							<ul id="myTabedu1" class="tab-review-design">
+								<li class="active"><a href="#description">Quản lý học viên</a></li>
+								<div id="myTabContent" class="tab-content custom-product-edit">
+									<div class="product-tab-list tab-pane fade active in" id="description">
+										<div class="row">
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												<div class="review-content-section">
+
+												</div>
+											</div>
+										</div>
+									</div>
+									<div ng-app="myApp" ng-controller="HocVienCtrl">
+										<div class="product-status mg-b-15">
+											<div class="container-fluid">
+												<div class="row">
+													<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+														<div class="product-status-wrap drp-lst">
+
+															<div class="asset-inner">
+																<table class="table">
+																	<thead>
+																		<tr>
+																			<th>No</th>
+																			<th>ID Đăng Ký Khóa Học</th>
+																			<th>ID Người Dùng</th>
+																			<th>Họ Tên</th>
+																			<th>Số Điện Thoại</th>
+
+																			<th>Tên Khóa Học</th>
+																			<th>Chi Phí</th>
+																			<th>Chức Vụ</th>
+																			<th>Trạng Thái</th>
+																		</tr>
+																	</thead>
+																	<tbody>
+																		<tr ng-repeat="item in itemsHocVien">
+																			<td>{{$index + 1}}</td>
+																			<td>{{item.id}}</td>
+																			<td>{{item.idNguoiDung}}</td>
+																			<td>{{item.hoTen}}</td>
+																			<td>{{item.soDienThoai}}</td>
+
+																			<td>{{item.tenKhoaHoc}}</td>
+																			<td>{{item.chiPhi}}</td>
+																			<td>{{item.chucVu}}</td>
+																			<td>{{item.trangThai}}</td>
+																		</tr>
+																	</tbody>
+
+																</table>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="text-center">
+											<ul class="pagination">
+												<li ng-class="{disabled: currentPage == 0}">
+													<a href="#" ng-click="prevPage()"><i
+															class="fas fa-chevron-left"></i> Previous</a>
+												</li>
+												<li ng-repeat="n in range(pagedItems.length)"
+													ng-class="{active: n == currentPage}">
+													<a href="#" ng-click="setPage(n)">{{n + 1}}</a>
+												</li>
+												<li ng-class="{disabled: currentPage == pagedItems.length - 1}">
+													<a href="#" ng-click="nextPage()">Next <i
+															class="fas fa-chevron-right"></i></a>
+												</li>
+											</ul>
+										</div>
+									</div>
+
+
+
+									<script>
+										var app = angular.module('myApp', []);
+										app.controller('HocVienCtrl', function ($scope) {
+											// ... your existing code ...
+
+											// Pagination
+											$scope.currentPage = 0;
+											$scope.pageSize = 5; // số items trên mỗi trang
+
+											$scope.numberOfPages = function () {
+												return Math.ceil($scope.itemsHocVien.length / $scope.pageSize);
+											};
+
+											$scope.range = function (num) {
+												var arr = [];
+												for (var i = 0; i < num; i++) {
+													arr.push(i);
+												}
+												return arr;
+											};
+
+											$scope.setPage = function (n) {
+												$scope.currentPage = n;
+											};
+
+											$scope.prevPage = function () {
+												if ($scope.currentPage > 0) {
+													$scope.currentPage--;
+												}
+											};
+
+											$scope.nextPage = function () {
+												if ($scope.currentPage < $scope.numberOfPages() - 1) {
+													$scope.currentPage++;
+												}
+											};
+
+											// ...
+
+										});
+									</script>
+								</div>
+							</ul>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+	<!-- jQuery -->
+	<script th:src="@{/Admin/js/vendor/jquery-1.12.4.min.js}"></script>
+
+	<!-- Bootstrap JS -->
+	<script th:src="@{/Admin/js/bootstrap.min.js}"></script>
+
+	<!-- Wow JS -->
+	<script th:src="@{/Admin/js/wow.min.js}"></script>
+
+	<!-- Price-slider JS -->
+	<script th:src="@{/Admin/js/jquery-price-slider.js}"></script>
+
+	<!-- Meanmenu JS -->
+	<script th:src="@{/Admin/js/jquery.meanmenu.js}"></script>
+
+	<!-- Owl Carousel JS -->
+	<script th:src="@{/Admin/js/owl.carousel.min.js}"></script>
+
+	<!-- Sticky JS -->
+	<script th:src="@{/Admin/js/jquery.sticky.js}"></script>
+
+	<!-- ScrollUp JS -->
+	<script th:src="@{/Admin/js/jquery.scrollUp.min.js}"></script>
+
+	<!-- Custom Scrollbar JS -->
+	<script th:src="@{/Admin/js/scrollbar/jquery.mCustomScrollbar.concat.min.js}"></script>
+	<script th:src="@{/Admin/js/scrollbar/mCustomScrollbar-active.js}"></script>
+
+	<!-- MetisMenu JS -->
+	<script th:src="@{/Admin/js/metisMenu/metisMenu.min.js}"></script>
+	<script th:src="@{/Admin/js/metisMenu/metisMenu-active.js}"></script>
+
+	<!-- Sparkline JS -->
+	<script th:src="@{/Admin/js/sparkline/jquery.sparkline.min.js}"></script>
+	<script th:src="@{/Admin/js/sparkline/jquery.charts-sparkline.js}"></script>
+
+	<!-- Calendar JS -->
+	<script th:src="@{/Admin/js/calendar/moment.min.js}"></script>
+	<script th:src="@{/Admin/js/calendar/fullcalendar.min.js}"></script>
+	<script th:src="@{/Admin/js/calendar/fullcalendar-active.js}"></script>
+
+	<!-- Maskedinput JS -->
+	<script th:src="@{/Admin/js/jquery.maskedinput.min.js}"></script>
+	<script th:src="@{/Admin/js/masking-active.js}"></script>
+
+	<!-- Datepicker JS -->
+	<script th:src="@{/Admin/js/datepicker/jquery-ui.min.js}"></script>
+	<script th:src="@{/Admin/js/datepicker/datepicker-active.js}"></script>
+
+	<!-- Form Validate JS -->
+	<script th:src="@{/Admin/js/form-validation/jquery.form.min.js}"></script>
+	<script th:src="@{/Admin/js/form-validation/jquery.validate.min.js}"></script>
+	<script th:src="@{/Admin/js/form-validation/form-active.js}"></script>
+
+	<!-- Dropzone JS -->
+	<script th:src="@{/Admin/js/dropzone/dropzone.js}"></script>
+
+	<!-- Tab JS -->
+	<script th:src="@{/Admin/js/tab.js}"></script>
+
+	<!-- Plugins JS -->
+	<script th:src="@{/Admin/js/plugins.js}"></script>
+
+	<!-- Main JS -->
+	<script th:src="@{/Admin/js/main.js}"></script>
+
+	<!-- Tawk Chat JS -->
+	<script th:src="@{/Admin/js/tawk-chat.js}"></script>
+	<script th:src="@{/Admin/js/hoc-vien-list.js}"></script>
+	<script th:src="@{/Admin/js/thongBao.js}"></script>
+	<script type="text/javascript">
+		var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+		(function () {
+			var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+			s1.async = true;
+			s1.src = 'https://embed.tawk.to/656a307eff45ca7d4785d6d3/1hgjcqs8o';
+			s1.charset = 'UTF-8';
+			s1.setAttribute('crossorigin', '*');
+			s0.parentNode.insertBefore(s1, s0);
+		})();
+	</script>
+</body>
+</body>
+
+</html>
